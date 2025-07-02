@@ -1,0 +1,516 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mk_gaming - مدونة الألعاب والتقنية</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .login-container, .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .login-form h2 {
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .google-login-btn {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .google-login-btn:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .post-excerpt {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .post-form {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-gamepad"></i>
+            Mk_gaming
+        </div>
+        <div class="nav-buttons">
+            <div id="userInfo" class="user-info hidden">
+                <div class="user-avatar" id="userAvatar"></div>
+                <span id="userName"></span>
+                <button class="btn btn-secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- شاشة تسجيل الدخول -->
+        <div id="loginScreen" class="login-container">
+            <div class="login-form">
+                <h2>
+                    <i class="fas fa-gamepad"></i>
+                    مرحباً بك في Mk_gaming
+                </h2>
+                <p style="margin-bottom: 2rem; color: #666;">يجب تسجيل الدخول للوصول إلى المحتوى</p>
+                <button class="google-login-btn" onclick="loginWithGoogle()">
+                    <i class="fab fa-google"></i>
+                    تسجيل الدخول بجوجل
+                </button>
+            </div>
+        </div>
+
+        <!-- المحتوى الرئيسي -->
+        <div id="mainContent" class="hidden">
+            <div class="welcome-message">
+                <h1>
+                    <i class="fas fa-rocket"></i>
+                    مرحباً بك في عالم الألعاب والتقنية
+                </h1>
+                <p>اكتشف أحدث المقالات والمراجعات في عالم الألعاب</p>
+            </div>
+
+            <!-- نموذج إضافة مقال (للمدير فقط) -->
+            <div id="adminPanel" class="hidden">
+                <div class="post-form">
+                    <h3>
+                        <i class="fas fa-plus-circle"></i>
+                        إضافة مقال جديد
+                    </h3>
+                    <form id="postForm">
+                        <div class="form-group">
+                            <label for="postTitle">عنوان المقال</label>
+                            <input type="text" id="postTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postExcerpt">ملخص المقال</label>
+                            <input type="text" id="postExcerpt" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postContent">محتوى المقال</label>
+                            <textarea id="postContent" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            نشر المقال
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- عرض المقالات -->
+            <div class="main-content">
+                <h2>
+                    <i class="fas fa-newspaper"></i>
+                    أحدث المقالات
+                </h2>
+                <div id="postsContainer" class="posts-grid">
+                    <!-- المقالات ستظهر هنا -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات المستخدم المسجل دخوله
+        let currentUser = null;
+        const adminEmail = "Mkeducation.com@gmail.com";
+
+        // مقالات تجريبية
+        let posts = [
+            {
+                id: 1,
+                title: "مراجعة أحدث ألعاب 2025",
+                excerpt: "نظرة شاملة على أفضل الألعاب التي صدرت هذا العام وما يميزها",
+                content: "محتوى المقال التفصيلي هنا...",
+                author: "Mk Gaming",
+                date: "2025-07-01",
+                icon: "gamepad"
+            },
+            {
+                id: 2,
+                title: "دليل شراء كروت الرسوميات",
+                excerpt: "كل ما تحتاج معرفته قبل شراء كرت رسوميات جديد",
+                content: "محتوى المقال التفصيلي هنا...",
+                author: "Mk Gaming",
+                date: "2025-06-28",
+                icon: "microchip"
+            },
+            {
+                id: 3,
+                title: "نصائح للمبتدئين في الألعاب التنافسية",
+                excerpt: "خطوات أساسية لتحسين مهاراتك في الألعاب التنافسية",
+                content: "محتوى المقال التفصيلي هنا...",
+                author: "Mk Gaming",
+                date: "2025-06-25",
+                icon: "trophy"
+            }
+        ];
+
+        // محاكاة تسجيل الدخول بجوجل
+        function loginWithGoogle() {
+            // في التطبيق الحقيقي، سيتم استخدام Google OAuth API
+            const mockUser = {
+                email: "user@example.com",
+                name: "مستخدم تجريبي",
+                avatar: "U"
+            };
+            
+            // محاكاة تسجيل دخول المدير
+            const isAdmin = confirm("هل تريد تسجيل الدخول كمدير؟ (للاختبار)");
+            if (isAdmin) {
+                mockUser.email = adminEmail;
+                mockUser.name = "Mk Education";
+                mockUser.avatar = "M";
+            }
+            
+            currentUser = mockUser;
+            showMainContent();
+        }
+
+        function showMainContent() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainContent').classList.remove('hidden');
+            
+            // إظهار معلومات المستخدم
+            document.getElementById('userInfo').classList.remove('hidden');
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userAvatar').textContent = currentUser.avatar;
+            
+            // إظهار لوحة المدير إذا كان المستخدم مديراً
+            if (currentUser.email === adminEmail) {
+                document.getElementById('adminPanel').classList.remove('hidden');
+            }
+            
+            displayPosts();
+        }
+
+        function logout() {
+            currentUser = null;
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('mainContent').classList.add('hidden');
+            document.getElementById('userInfo').classList.add('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+        }
+
+        function displayPosts() {
+            const container = document.getElementById('postsContainer');
+            
+            if (posts.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #666;">
+                        <i class="fas fa-newspaper" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>لم يتم نشر أي مقالات بعد</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = posts.map(post => `
+                <div class="post-card">
+                    <div class="post-image">
+                        <i class="fas fa-${post.icon}"></i>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-title">${post.title}</div>
+                        <div class="post-excerpt">${post.excerpt}</div>
+                        <div class="post-meta">
+                            <span>
+                                <i class="fas fa-user"></i>
+                                ${post.author}
+                            </span>
+                            <span>
+                                <i class="fas fa-calendar"></i>
+                                ${new Date(post.date).toLocaleDateString('ar-EG')}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // إضافة مقال جديد
+        document.getElementById('postForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (currentUser.email !== adminEmail) {
+                alert('غير مسموح لك بنشر المقالات');
+                return;
+            }
+            
+            const title = document.getElementById('postTitle').value;
+            const excerpt = document.getElementById('postExcerpt').value;
+            const content = document.getElementById('postContent').value;
+            
+            const newPost = {
+                id: posts.length + 1,
+                title: title,
+                excerpt: excerpt,
+                content: content,
+                author: "Mk Gaming",
+                date: new Date().toISOString().split('T')[0],
+                icon: "gamepad"
+            };
+            
+            posts.unshift(newPost);
+            displayPosts();
+            
+            // إعادة تعيين النموذج
+            document.getElementById('postForm').reset();
+            
+            alert('تم نشر المقال بنجاح!');
+        });
+
+        // التحقق من حالة تسجيل الدخول عند تحميل الصفحة
+        window.addEventListener('load', function() {
+            // في التطبيق الحقيقي، سيتم التحقق من localStorage أو cookies
+            // لمعرفة إذا كان المستخدم مسجلاً دخوله مسبقاً
+        });
+    </script>
+</body>
+</html>
